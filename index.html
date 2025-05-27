@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GigFinance Business Plan</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f2f5; /* Lighter background for overall page */
+            color: #334155; /* Darker text for better contrast */
+        }
+        .content-section {
+            display: none; /* Hidden by default */
+        }
+        .content-section.active {
+            display: block; /* Shown when active */
+        }
+        .nav-link {
+            transition: all 0.2s ease-in-out;
+            display: flex; /* Enable flexbox for icon and text alignment */
+            align-items: center; /* Center items vertically */
+            gap: 0.5rem; /* Space between icon and text */
+        }
+        .nav-link.active {
+            background-color: #4a5568; /* Slightly lighter dark for active */
+            color: #ffffff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        table {
+            width: 100%;
+            border-collapse: separate; /* Use separate for rounded corners on cells */
+            border-spacing: 0;
+            margin-top: 1.5rem;
+            border-radius: 0.75rem; /* Rounded corners for the whole table */
+            overflow: hidden; /* Ensures rounded corners apply to content */
+        }
+        th, td {
+            border: 1px solid #e2e8f0; /* Lighter border color */
+            padding: 1rem 1.25rem; /* More padding */
+            text-align: left;
+        }
+        th {
+            background-color: #f8fafc; /* Very light background for headers */
+            font-weight: 600;
+            color: #1a202c;
+        }
+        ul {
+            list-style-type: disc;
+            margin-left: 1.5rem;
+            padding-left: 0.5rem;
+        }
+        ol {
+            list-style-type: decimal;
+            margin-left: 1.5rem;
+            padding-left: 0.5rem;
+        }
+        .list-circle {
+            list-style-type: circle;
+        }
+        .sub-nav-link {
+            padding: 0.75rem 1.5rem; /* More padding for buttons */
+            border-radius: 0.75rem; /* More rounded corners */
+            transition: background-color 0.2s ease, transform 0.1s ease;
+            display: flex; /* Enable flexbox for icon and text alignment */
+            align-items: center; /* Center items vertically */
+            gap: 0.5rem; /* Space between icon and text */
+        }
+        .sub-nav-link:hover {
+            background-color: #3b82f6; /* Darker blue on hover */
+            transform: translateY(-2px); /* Slight lift effect */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .sub-nav-link.active {
+            background-color: #2563eb; /* Even darker blue for active */
+            color: #ffffff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+        .icon-lg {
+            width: 1.5rem; /* Large icon size */
+            height: 1.5rem;
+            fill: currentColor; /* Use text color for SVG fill */
+        }
+        .icon-md {
+            width: 1.25rem; /* Medium icon size */
+            height: 1.25rem;
+            fill: currentColor;
+        }
+        .icon-sm {
+            width: 1rem; /* Small icon size */
+            height: 1rem;
+            fill: currentColor;
+        }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen">
+    <header class="bg-gray-900 text-white shadow-lg py-5">
+        <div class="container mx-auto px-6 flex items-center justify-center gap-3">
+            <svg class="icon-lg text-blue-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+            </svg>
+            <h1 class="text-4xl font-extrabold text-center">GigFinance Business Plan</h1>
+        </div>
+    </header>
+
+    <nav class="bg-gray-800 text-white py-4 shadow-xl">
+        <div class="container mx-auto px-6 flex flex-wrap justify-center gap-3">
+            <a href="#" class="nav-link px-5 py-2.5 rounded-lg hover:bg-gray-700 active" onclick="showSection('home', this)">
+                <svg class="icon-md" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                    <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                </svg>
+                Home
+            </a>
+            <a href="#" class="nav-link px-5 py-2.5 rounded-lg hover:bg-gray-700" onclick="showSection('business-description', this)">
+                <svg class="icon-md" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+                    <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+                </svg>
+                Business Description
+            </a>
+            <a href="#" class="nav-link px-5 py-2.5 rounded-lg hover:bg-gray-700" onclick="showSection('environmental-scanning', this)">
+                <svg class="icon-md" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                </svg>
+                Environmental Scanning
+            </a>
+            <a href="#" class="nav-link px-5 py-2.5 rounded-lg hover:bg-gray-700" onclick="showSection('team', this)">
+                <svg class="icon-md" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="9" cy="7" r="4"></circle>
+                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                </svg>
+                Team
+            </a>
+            <a href="#" class="nav-link px-5 py-2.5 rounded-lg hover:bg-gray-700" onclick="showSection('funding-request', this)">
+                <svg class="icon-md" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="12" y1="1" x2="12" y2="23"></line>
+                    <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                </svg>
+                Funding Request
+            </a>
+            <a href="#" class="nav-link px-5 py-2.5 rounded-lg hover:bg-gray-700" onclick="showSection('additional-info', this)">
+                <svg class="icon-md" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="12" y1="16" x2="12" y2="12"></line>
+                    <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                </svg>
+                Additional Information
+            </a>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-6 py-10 flex-grow">
+        <section id="home" class="content-section active bg-white p-10 rounded-xl shadow-2xl mb-10">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center flex items-center justify-center gap-3">
+                <svg class="icon-lg text-blue-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                    <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                </svg>
+                Welcome to GigFinance
+            </h2>
+            <div class="text-lg text-gray-700 space-y-2">
+                <p><strong>Business Name:</strong> GigFinance</p>
+                <p><strong>Team Members:</strong> Youssef Mansour, Mohab Bahnassy, Jana Elenany</p>
+                <p><strong>Date:</strong> Wednesday, May 28, 2025</p>
+            </div>
+            <p class="mt-8 text-center text-gray-600">Explore our business plan using the navigation above.</p>
+        </section>
+
+        <section id="business-description" class="content-section bg-white p-10 rounded-xl shadow-2xl mb-10">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6 flex items-center gap-3">
+                <svg class="icon-lg text-blue-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+                    <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+                </svg>
+                Business Description
+            </h2>
+
+            <h3 class="text-2xl font-semibold text-gray-700 mb-4 border-b pb-2 border-gray-200">Overview of the Business Idea</h3>
+            <p class="mb-6 leading-relaxed text-gray-700">
+                GigFinance is an AI-driven financial platform specifically designed for the rapidly growing gig economy in Egypt. Our mission is to empower independent workers, including ride-hailing drivers, freelancers, and delivery personnel, by providing them with intelligent financial tools. We aim to foster financial stability and growth for this underserved segment.
+            </p>
+
+            <h3 class="text-2xl font-semibold text-gray-700 mb-4 border-b pb-2 border-gray-200">Products and/or Services Offered & The Problem They Solve</h3>
+            <p class="mb-4 leading-relaxed text-gray-700">Gig workers in Egypt often face significant financial challenges due to irregular income, limited access to traditional financial services (loans, savings, insurance), and difficulty managing their finances. Traditional banks do not adequately cater to their unique needs, leading to financial instability and hindering their economic potential.</p>
+            <p class="mb-6 leading-relaxed text-gray-700">GigFinance addresses these problems by offering a user-friendly mobile application with the following key features:</p>
+            <ul class="list-disc list-inside space-y-2 mb-6 text-gray-700">
+                <li><strong>Financial Management Tools:</strong> For tracking and organizing earnings and expenses.</li>
+                <li><strong>Income Smoothing:</strong> AI analyzes income patterns to predict future earnings and help manage volatility.</li>
+                <li><strong>Instant Payment Access:</strong> Facilitates quicker access to earned funds.</li>
+                <li><strong>Micro-lending:</strong> Provides access to small loans tailored for gig workers.</li>
+                <li><strong>Bespoke Insurance Products:</strong> Offers insurance solutions relevant to the gig economy.</li>
+                <li><strong>Automated Tax & Savings Management:</strong> Calculates tax liabilities and suggests optimal savings strategies.</li>
+                <li><strong>Side Gig Recommendations:</strong> Suggests additional earning opportunities based on market trends and worker preferences.</li>
+            </ul>
+
+            <h3 class="text-2xl font-semibold text-gray-700 mb-4 border-b pb-2 border-gray-200">Unique Value Proposition</h3>
+            <p class="mb-6 leading-relaxed text-gray-700">Our competitive edge is built on several pillars:</p>
+            <ul class="list-disc list-inside space-y-2 mb-6 text-gray-700">
+                <li><strong>Tailored for Gig Workers:</strong> Unlike generic finance apps, GigFinance is built specifically for freelancers and gig workers, addressing their unique financial needs.</li>
+                <li><strong>AI-Driven Automation:</strong> Our AI minimizes manual effort by leveraging advanced algorithms for financial predictions, personalized recommendations, and automated management.</li>
+                <li><strong>Comprehensive Financial Toolkit:</strong> We integrate savings, credit access, tax calculations, and investment guidance into one seamless platform.</li>
+                <li><strong>Potential for Integration with Major Gig Economy Platforms:</strong> Designed to work with platforms like Uber, Careem, Talabat, Fiverr, and Upwork for real-time income tracking.</li>
+            </ul>
+
+            <h3 class="text-2xl font-semibold text-gray-700 mb-4 border-b pb-2 border-gray-200">Proposed Business Model</h3>
+            <p class="mb-6 leading-relaxed text-gray-700">GigFinance will employ a hybrid revenue model:</p>
+            <ul class="list-disc list-inside space-y-2 mb-6 text-gray-700">
+                <li><strong>Freemium Model:</strong> A free version of the app will include basic utilities to attract a large user base, lowering the entry barrier for price-sensitive gig workers.</li>
+                <li><strong>Subscription Model:</strong> A premium "Pro" version will be available for EGP 100/month, offering advanced features such as AI tax planning, investment advice, and more sophisticated financial tools. This provides a steady revenue stream.</li>
+                <li><strong>Freemium Upsells:</strong> In-app purchases for specific tools (e.g., a tax calculator at EGP 50/use) will allow users to access specialized features on an as-needed basis without a full subscription.</li>
+                <li><strong>AI-Driven:</strong> Personalized insights and automation are core to our offering, enhancing user value.</li>
+                <li><strong>Future Platform Model:</strong> We envision incorporating a platform model in the future to connect gig workers directly with financial service providers or banks.</li>
+            </ul>
+        </section>
+
+        <section id="environmental-scanning" class="content-section bg-white p-10 rounded-xl shadow-2xl mb-10">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center flex items-center justify-center gap-3">
+                <svg class="icon-lg text-blue-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                </svg>
+                Environmental Scanning
+            </h2>
+            <p class="mb-8 text-lg leading-relaxed text-gray-700 text-center">
+                Our strategic insights are based on a comprehensive analysis of the Egyptian macroenvironment and market dynamics.
+                Click the button below to view the detailed strategic insights from our PESTEL, Porter's Five Forces, and SWOT analyses.
+            </p>
+            <div class="flex justify-center">
+                <a href="#" class="sub-nav-link bg-blue-600 text-white font-semibold shadow-md hover:shadow-lg" onclick="showSection('strategic-insights', this)">
+                    View Strategic Insights
+                    <svg class="icon-md" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="9 18 15 12 9 6"></polyline>
+                    </svg>
+                </a>
+            </div>
+        </section>
+
+        <section id="strategic-insights" class="content-section bg-white p-10 rounded-xl shadow-2xl mb-10">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6 flex items-center gap-3">
+                <svg class="icon-lg text-blue-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                </svg>
+                Strategic Insights from Environmental Scan
+            </h2>
+            <p class="mb-6 leading-relaxed text-gray-700">
+                Our SWOT analysis highlights that GigFinance's strengths lie in its specialized focus on Egypt's gig workers, a segment often overlooked by traditional financial services. Our AI-driven personalization and alignment with government initiatives and the Central Bank of Egypt's FinTech Hub present significant growth opportunities.
+            </p>
+            <p class="mb-6 leading-relaxed text-gray-700">
+                However, our financial focus also exposes us to strict regulatory penalties, which, combined with our small team size, could lead to compliance risks and financial burdens. Dependency on partnerships with gig platforms is another challenge, as these platforms might develop competing in-app financial services.
+            </p>
+            <p class="mb-6 leading-relaxed text-gray-700">
+                Despite these vulnerabilities, our agility as a startup allows us to potentially capture a significant portion of the massive and growing gig worker market. The market's high-earning users and widespread smartphone adoption offer strong potential for market penetration. However, we must closely monitor competition from established financial institutions and large gig economy players. Strategic partnerships will be crucial for long-term success.
+            </p>
+
+            <h3 class="text-2xl font-semibold text-gray-700 mb-4 border-b pb-2 border-gray-200">Key Strategic Actions:</h3>
+            <ul class="list-disc list-inside space-y-3 mb-6 text-gray-700">
+                <li><strong>Strengths to Seize Opportunities:</strong>
+                    <ul class="list-circle list-inside ml-6 space-y-1">
+                        <li>Market ourselves as a specialized, AI-driven app focusing on gig workers.</li>
+                        <li>Leverage government programs for funding and networking.</li>
+                        <li>Utilize our capability to reduce cash reliance and integrate with digital government platforms for support.</li>
+                    </ul>
+                </li>
+                <li><strong>Strengths to Overcome Weaknesses:</strong>
+                    <ul class="list-circle list-inside ml-6 space-y-1">
+                        <li>Develop innovative AI tools to establish early partnerships with established finance apps or gig platforms, gaining access to more data and reducing inaccuracy risks.</li>
+                        <li>Consider moderately expanding our team to enhance app development and regulatory monitoring.</li>
+                        <li>Utilize government talent programs for hiring.</li>
+                    </ul>
+                </li>
+                <li><strong>Strengths to Mitigate Threats:</strong>
+                    <ul class="list-circle list-inside ml-6 space-y-1">
+                        <li>Align with government bodies like the CBE to navigate compliance risks and avoid penalties.</li>
+                        <li>Build user trust by providing unique, valuable services like tax monitoring and specialized financial advice.</li>
+                    </ul>
+                </li>
+                <li><strong>Opportunities to Improve Weaknesses:</strong>
+                    <ul class="list-circle list-inside ml-6 space-y-1">
+                        <li>Partner with government-backed initiatives to build credibility and counteract our limited track record.</li>
+                        <li>Explore legal avenues for collecting anonymous data from the large market to train better AI models.</li>
+                        <li>Focus on user acquisition via social media campaigns, capitalizing on the growing social acceptance of gig work.</li>
+                    </ul>
+                </li>
+                <li><strong>Turn Threats into Opportunities:</strong>
+                    <ul class="list-circle list-inside ml-6 space-y-1">
+                        <li>Position GigFinance as a service that safeguards against the financial instability faced by gig workers in Egypt, earning user loyalty (e.g., cash flow prediction, side-hustle recommendations).</li>
+                        <li>Transform competitors into collaborators by actively seeking partnerships.</li>
+                    </ul>
+                </li>
+                <li><strong>Prevent Threats Magnifying Weaknesses:</strong>
+                    <ul class="list-circle list-inside ml-6 space-y-1">
+                        <li>Leverage the regulatory sandbox and hire compliance experts to offset regulatory complexity and vulnerability due to our small team size.</li>
+                        <li>Develop niche tools that competitors/partners cannot easily replicate to reduce dependency on partnerships and mitigate the threat of substitute products.</li>
+                    </ul>
+                </li>
+            </ul>
+            <p class="mt-8 text-sm text-gray-500 text-center">
+                This analysis integrates insights from PESTEL, Porter's Five Forces, and SWOT to inform our strategic direction.
+            </p>
+            <div class="flex justify-center mt-8">
+                <a href="#" class="sub-nav-link bg-gray-200 text-gray-700 font-semibold hover:bg-gray-300" onclick="showSection('environmental-scanning', this)">
+                    <svg class="icon-md" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="15 18 9 12 15 6"></polyline>
+                    </svg>
+                    Back to Environmental Scanning Overview
+                </a>
+            </div>
+        </section>
+
+        <section id="team" class="content-section bg-white p-10 rounded-xl shadow-2xl mb-10">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6 flex items-center gap-3">
+                <svg class="icon-lg text-blue-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="9" cy="7" r="4"></circle>
+                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                </svg>
+                Our Team
+            </h2>
+            <p class="mb-8 leading-relaxed text-gray-700">Our team comprises experienced professionals with diverse backgrounds crucial for the success of GigFinance:</p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-gray-50 p-8 rounded-lg shadow-lg border border-gray-100 transform hover:scale-105 transition-transform duration-200 flex flex-col items-center text-center">
+                    <svg class="icon-lg text-gray-500 mb-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-3">Jana (Finance Lead)</h3>
+                    <p class="text-gray-700 mb-2"><strong>Background:</strong> Finance major with expertise in budgeting, taxation, and financial modeling.</p>
+                    <p class="text-gray-600"><strong>Strengths:</strong> Financial planning, tax strategy, cost-benefit analysis, investment advisory, monetization strategy.</p>
+                </div>
+                <div class="bg-gray-50 p-8 rounded-lg shadow-lg border border-gray-100 transform hover:scale-105 transition-transform duration-200 flex flex-col items-center text-center">
+                    <svg class="icon-lg text-gray-500 mb-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-3">Youssef (Tech Lead – Backend)</h3>
+                    <p class="text-gray-700 mb-2"><strong>Background:</strong> Computer Science major, specialized in data structures, API development, and system architecture.</p>
+                    <p class="text-gray-600"><strong>Strengths:</strong> Backend development, database management, API integration (e.g., with gig platforms like Uber, Talabat).</p>
+                </div>
+                <div class="bg-gray-50 p-8 rounded-lg shadow-lg border border-gray-100 transform hover:scale-105 transition-transform duration-200 flex flex-col items-center text-center">
+                    <svg class="icon-lg text-gray-500 mb-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-3">Mohab (Tech Lead – AI & Machine Learning)</h3>
+                    <p class="text-gray-700 mb-2"><strong>Background:</strong> Computer Science major with a focus on artificial intelligence, machine learning, and data analytics.</p>
+                    <p class="text-gray-600"><strong>Strengths:</strong> Cash flow prediction models, earnings analysis, automated financial recommendations.</p>
+                </div>
+                <div class="bg-gray-50 p-8 rounded-lg shadow-lg border border-gray-100 transform hover:scale-105 transition-transform duration-200 flex flex-col items-center text-center">
+                    <svg class="icon-lg text-gray-500 mb-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-3">Sara (UX/UI Designer)</h3>
+                    <p class="text-gray-700 mb-2"><strong>Background:</strong> Graphic design graduate with experience in fintech product design and user research.</p>
+                    <p class="text-gray-600"><strong>Strengths:</strong> Prototyping, wireframes, user testing, mobile-first design principles.</p>
+                </div>
+                <div class="bg-gray-50 p-8 rounded-lg shadow-lg border border-gray-100 transform hover:scale-105 transition-transform duration-200 flex flex-col items-center text-center">
+                    <svg class="icon-lg text-gray-500 mb-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-3">Omar (Marketing & Partnerships Manager)</h3>
+                    <p class="text-gray-700 mb-2"><strong>Background:</strong> Marketing major with a background in B2B partnerships and digital campaign execution.</p>
+                    <p class="text-gray-600"><strong>Strengths:</strong> Go-to-market strategy, partner onboarding, user acquisition, social media.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="funding-request" class="content-section bg-white p-10 rounded-xl shadow-2xl mb-10">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6 flex items-center gap-3">
+                <svg class="icon-lg text-blue-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="12" y1="1" x2="12" y2="23"></line>
+                    <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                </svg>
+                Funding Request
+            </h2>
+
+            <h3 class="text-2xl font-semibold text-gray-700 mb-4 border-b pb-2 border-gray-200">Initial Seed Funding (StartIT Program)</h3>
+            <p class="mb-3 leading-relaxed text-gray-700">
+                We will secure <strong>EGP 480,000</strong> in initial seed funding through the StartIT Incubation Program with zero equity requirements. This funding also includes $10,000 in Amazon Web Services (AWS) cloud support.
+            </p>
+            <p class="mb-6 leading-relaxed text-gray-700"><strong>Purpose:</strong> This funding will cover MVP development, initial market validation, AI integration, app development, UI/UX design, testing, iteration, market research, core team salaries/stipends, initial user acquisition campaigns, and operational costs.</p>
+            <div class="overflow-x-auto mb-8">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Expense Category</th>
+                            <th>Estimated Amount (EGP)</th>
+                            <th>Purpose</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Product Development</td>
+                            <td>100,000</td>
+                            <td>AI integration, app development, UI/UX design, testing, and iteration</td>
+                        </tr>
+                        <tr>
+                            <td>Market Research</td>
+                            <td>60,000</td>
+                            <td>Surveys, focus groups, competitor analysis, user feedback collection</td>
+                        </tr>
+                        <tr>
+                            <td>Core Team Salaries</td>
+                            <td>180,000</td>
+                            <td>Salaries or stipends for 6 team members (partial/full coverage for 3-6 months)</td>
+                        </tr>
+                        <tr>
+                            <td>Marketing & Outreach</td>
+                            <td>40,000</td>
+                            <td>Initial user acquisition campaigns, digital ads, community engagement</td>
+                        </tr>
+                        <tr>
+                            <td>Operational Costs</td>
+                            <td>100,000</td>
+                            <td>Office space (if applicable), software licenses, communication, and miscellaneous expenses</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3 class="text-2xl font-semibold text-gray-700 mb-4 border-b pb-2 border-gray-200">Extended Seed Funding Requirements</h3>
+            <p class="mb-3 leading-relaxed text-gray-700">
+                We will require an additional <strong>EGP 1.5 Million</strong> in extended seed funding to build a market-ready product and prepare for launch.
+            </p>
+            <p class="mb-6 leading-relaxed text-gray-700"><strong>Purpose:</strong> This will support advanced AI features, refined UI/UX, robust backend, security infrastructure, extended core team salaries, compliance & legal setup, pilot programs, user testing, and operational contingency.</p>
+            <p class="mb-3 leading-relaxed text-gray-700"><strong>Sources:</strong> We will target Egyptian Angel Investors (Cairo Angels, Alex Angels), Friends, Family, and Fools (FFF), Micro-Venture Capital Funds, and early-stage Strategic Partnerships.</p>
+            <div class="overflow-x-auto mb-8">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Expense Category</th>
+                            <th>Estimated Amount (EGP)</th>
+                            <th>Purpose</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Enhanced Product Development</td>
+                            <td>400,000</td>
+                            <td>Advanced AI features, refined UI/UX, robust backend, security infrastructure</td>
+                        </tr>
+                        <tr>
+                            <td>Extended Core Team Salaries</td>
+                            <td>600,000</td>
+                            <td>Support 6-8 core team members for 6-9 months with competitive compensation</td>
+                        </tr>
+                        <tr>
+                            <td>Compliance & Legal Setup</td>
+                            <td>100,000</td>
+                            <td>Legal fees, IP protection, fintech regulatory consultation</td>
+                        </tr>
+                        <tr>
+                            <td>Pilot Program & User Testing</td>
+                            <td>150,000</td>
+                            <td>Controlled pilot programs with gig workers for feedback and refinement</td>
+                        </tr>
+                        <tr>
+                            <td>Operational Contingency</td>
+                            <td>250,000</td>
+                            <td>Buffer for unforeseen expenses and market adaptations</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3 class="text-2xl font-semibold text-gray-700 mb-4 border-b pb-2 border-gray-200">Launch Funding (Seed Extension/Series A)</h3>
+            <p class="mb-3 leading-relaxed text-gray-700">
+                To successfully launch and scale GigFinance, we are seeking <strong>EGP 4 million</strong> in launch funding.
+            </p>
+            <p class="mb-6 leading-relaxed text-gray-700"><strong>Purpose:</strong> This funding will enable the full build of the app, cover salaries for tech, AI, and design teams, support extensive marketing and user acquisition campaigns, operational and administrative costs, customer support scaling, and provide a contingency buffer.</p>
+            <p class="mb-3 leading-relaxed text-gray-700"><strong>Primary Target Investor:</strong> AUC Angels, a leading early-stage investment network in Egypt.</p>
+            <p class="mb-6 leading-relaxed text-gray-700"><strong>Other Potential Sources:</strong> Egyptian Venture Capital Funds (Flat6Labs, Sawari Ventures, Algebra Ventures, DisrupTech Ventures, ACI Partners), Corporate Venture Capital (EGBANK's corporate venture arm), Regional VCs (Global Ventures, BECO Capital, STV), and Government-backed Funds.</p>
+            <div class="overflow-x-auto mb-8">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Category</th>
+                            <th>Amount (EGP)</th>
+                            <th>Justification</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Product Development</td>
+                            <td>1,200,000</td>
+                            <td>Full build of app with AI features, backend, frontend, mobile responsiveness</td>
+                        </tr>
+                        <tr>
+                            <td>Tech & AI Talent</td>
+                            <td>900,000</td>
+                            <td>6–8 months of salaries for tech, AI, and design team</td>
+                        </tr>
+                        <tr>
+                            <td>Marketing & User Acquisition</td>
+                            <td>800,000</td>
+                            <td>Digital campaigns, influencer outreach, partnerships with gig platforms</td>
+                        </tr>
+                        <tr>
+                            <td>Operations & Admin</td>
+                            <td>400,000</td>
+                            <td>Office space, legal, tools, subscriptions, compliance</td>
+                        </tr>
+                        <tr>
+                            <td>Customer Support & Scaling</td>
+                            <td>300,000</td>
+                            <td>Onboarding gig workers, community support, localization features</td>
+                        </tr>
+                        <tr>
+                            <td>Contingency & Buffer</td>
+                            <td>400,000</td>
+                            <td>10% buffer for unexpected expenses, market shifts, or pivots</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section id="additional-info" class="content-section bg-white p-10 rounded-xl shadow-2xl mb-10">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6 flex items-center gap-3">
+                <svg class="icon-lg text-blue-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="12" y1="16" x2="12" y2="12"></line>
+                    <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                </svg>
+                Additional Information
+            </h2>
+
+            <h3 class="text-2xl font-semibold text-gray-700 mb-4 border-b pb-2 border-gray-200">Incubator vs. Independent Launch Strategy</h3>
+            <p class="mb-6 leading-relaxed text-gray-700">
+                We firmly advocate for a dual-incubation approach to maximize resources and specialized guidance. We will enroll in both the <strong>MINT Incubator by EGBANK</strong> and the <strong>StartIT Incubation Program</strong>.
+            </p>
+            <ul class="list-disc list-inside space-y-2 mb-6 text-gray-700">
+                <li><strong>MINT Incubator:</strong> Chosen for its specialized focus on fintech startups, zero equity/debt structure, proven track record (69% survival rate), established alumni network, and potential for future partnerships with EGBANK.</li>
+                <li><strong>StartIT Incubation Program:</strong> Chosen for its EGP 480,000 in seed funding (zero equity), AWS credits, and one-on-one consultancy with AI experts.</li>
+            </ul>
+            <p class="mb-6 leading-relaxed text-gray-700">This combined strategy leverages StartIT's funding and technical support alongside MINT's fintech-specific mentorship and network, creating a robust support system without immediate equity dilution.</p>
+
+            <h3 class="text-2xl font-semibold text-gray-700 mb-4 border-b pb-2 border-gray-200">Board Structure</h3>
+            <p class="mb-6 leading-relaxed text-gray-700">We will implement an evolutionary board structure, starting with our executive leadership and formalizing governance as we scale.</p>
+            <h4 class="text-xl font-semibold text-gray-700 mb-3">Phase 1: Early Stage (Current - During Incubation/Seed)</h4>
+            <ul class="list-disc list-inside space-y-2 mb-4 text-gray-700">
+                <li><strong>Executive Board Members (Internal Team):</strong> Omar (CEO), Jana (CFO), Youssef (CTO), Mohab (CDO), Sara (CPO).</li>
+                <li><strong>Advisory Board (Immediate Implementation):</strong> 3-4 external advisors including Fintech Industry Veterans, Gig Economy/Platform Experts, and AI/Data Science Thought Leaders.</li>
+            </ul>
+            <h4 class="text-xl font-semibold text-gray-700 mb-3">Phase 2: Growth Stage (Upon Securing Launch Funding)</h4>
+            <ul class="list-disc list-inside space-y-2 mb-6 text-gray-700">
+                <li><strong>Formal Board of Directors (5 Members):</strong> CEO (Executive Director), Investor Director(s) (Non-Executive), and Independent Directors (2-3 members) with expertise in Fintech, Legal/Compliance, and Financial/Audit.</li>
+            </ul>
+
+            <h3 class="text-2xl font-semibold text-gray-700 mb-4 border-b pb-2 border-gray-200">Governance Mechanisms in Early Stage</h3>
+            <p class="mb-6 leading-relaxed text-gray-700">We will adopt lean but effective governance mechanisms to ensure accountability, transparency, and alignment:</p>
+            <ul class="list-disc list-inside space-y-2 mb-6 text-gray-700">
+                <li><strong>Core Governance Framework:</strong> Weekly Executive Board Meetings, OKRs (Objectives & Key Results), Decision Logs, Equity & Vesting Agreements, Comprehensive Shareholder Agreement.</li>
+                <li><strong>Enhanced Governance Mechanisms:</strong> Monthly Financial Reporting, Annual External Audit, Compliance Framework (AML, KYC, Egypt's Data Protection Law), Risk Management Framework, Cybersecurity & Data Privacy Policy, Intellectual Property Strategy, Code of Conduct & Ethics Policy, Clear Founder Roles and KPIs, Communication Protocols.</li>
+            </ul>
+
+            <h3 class="text-2xl font-semibold text-gray-700 mb-4 border-b pb-2 border-gray-200">Financial Exit Strategy</h3>
+            <p class="mb-6 leading-relaxed text-gray-700">Our strategy recognizes the need for multiple pathways to maximize value creation and provide flexibility.</p>
+            <ul class="list-disc list-inside space-y-2 mb-6 text-gray-700">
+                <li><strong>Primary Exit Strategy: Strategic Acquisition (5-8 Years):</strong> Anticipated exit through acquisition by larger financial institutions, fintech companies, telecom operators, or Private Equity Firms.</li>
+                <li><strong>Secondary Exit Strategy: Initial Public Offering (7-10+ Years):</strong> Longer-term option on the Egyptian Exchange (EGX) or regional exchanges, contingent on dominant market position, consistent profitability, robust governance, scalable operations, and favorable market conditions.</li>
+            </ul>
+
+            <h3 class="text-2xl font-semibold text-gray-700 mb-4 border-b pb-2 border-gray-200">Financial Projections and Growth Model</h3>
+            <p class="mb-6 leading-relaxed text-gray-700">Our projected growth trajectory supports our exit strategy timeline and valuation expectations:</p>
+            <div class="overflow-x-auto mb-8">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Year</th>
+                            <th>Active Users</th>
+                            <th>Revenue (EGP Million)</th>
+                            <th>Funding Stage</th>
+                            <th>Key Milestones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>10,000</td>
+                            <td>0.5</td>
+                            <td>Seed Complete</td>
+                            <td>MVP Launch, Pilot Testing</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>50,000</td>
+                            <td>3.0</td>
+                            <td>Series A Complete</td>
+                            <td>Market Penetration, Product-Market Fit</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>200,000</td>
+                            <td>12.0</td>
+                            <td>Growth Stage</td>
+                            <td>Multi-City Expansion, Advanced AI Features</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>350,000</td>
+                            <td>25.0</td>
+                            <td>Pre-Exit</td>
+                            <td>Profitability, Strategic Partnerships</td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>500,000</td>
+                            <td>40.0</td>
+                            <td>Exit Ready</td>
+                            <td>Market Leadership, Acquisition Interest</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p class="mb-6 leading-relaxed text-gray-700">Achieving just 5% market penetration among Egypt's gig worker population would generate over EGP 30 million in annual revenue, validating our growth assumptions and exit valuations.</p>
+
+            <h3 class="text-2xl font-semibold text-gray-700 mb-4 border-b pb-2 border-gray-200">Breakeven Estimate</h3>
+            <p class="mb-3 leading-relaxed text-gray-700">
+                Our estimated monthly fixed costs are <strong>EGP 300,000</strong> (Salaries: EGP 200,000; Marketing: EGP 50,000; Infrastructure and Cloud: EGP 50,000).
+            </p>
+            <p class="mb-3 leading-relaxed text-gray-700">
+                With an average premium subscription of <strong>EGP 100/month</strong> and an estimated conversion rate of <strong>5%</strong> (industry average for freemium fintech apps), we would require <strong>3,000 paying users</strong> to cover monthly fixed costs.
+            </p>
+            <p class="mb-6 leading-relaxed text-gray-700">
+                This translates to a total of <strong>60,000 users</strong> needed to breakeven (3,000 paying users / 0.05 conversion rate). We estimate achieving breakeven by <strong>Month 18</strong>.
+            </p>
+
+            <h3 class="text-2xl font-semibold text-gray-700 mb-4 border-b pb-2 border-gray-200">Key Metrics to Monitor</h3>
+            <p class="mb-6 leading-relaxed text-gray-700">We will closely monitor the following metrics to track our progress and ensure strategic alignment:</p>
+            <div class="overflow-x-auto mb-8">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Metric</th>
+                            <th>Why This Metric</th>
+                            <th>How to Monitor</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>MAU/DAU (Monthly/Daily Active Users)</td>
+                            <td>Tracks engagement and app utility/stickiness</td>
+                            <td>In-app analytics (e.g., Firebase)</td>
+                        </tr>
+                        <tr>
+                            <td>Conversion Rate</td>
+                            <td>Measures success of Freemium model</td>
+                            <td>In-app purchases through database system</td>
+                        </tr>
+                        <tr>
+                            <td>Churn Rate</td>
+                            <td>Retention indicator for paid users</td>
+                            <td>Monitor monthly cancellations</td>
+                        </tr>
+                        <tr>
+                            <td>Customer Acquisition Cost (CAC)</td>
+                            <td>Efficiency of our marketing campaign and user acquisition strategies</td>
+                            <td>(Total Ad Spend) / (Number of New Users Acquired)</td>
+                        </tr>
+                        <tr>
+                            <td>Customer Lifetime Value (CLTV)</td>
+                            <td>Long-term user value; helps in understanding the long-term value of paid users</td>
+                            <td>(Average Revenue per User) * (Average Customer Lifespan)</td>
+                        </tr>
+                        <tr>
+                            <td>AI Accuracy</td>
+                            <td>Trust in predictions drives user retention and for evaluating our models</td>
+                            <td>Internal model testing during development</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-900 text-white py-5 text-center mt-10 shadow-inner">
+        <div class="container mx-auto px-6">
+            <p class="text-sm">&copy; 2025 GigFinance. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Function to show a specific content section and update active navigation link
+        function showSection(sectionId, clickedLink) {
+            // Hide all content sections
+            document.querySelectorAll('.content-section').forEach(section => {
+                section.classList.remove('active');
+            });
+
+            // Show the requested section
+            document.getElementById(sectionId).classList.add('active');
+
+            // Remove 'active' class from all navigation links
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+            });
+            document.querySelectorAll('.sub-nav-link').forEach(link => {
+                link.classList.remove('active');
+            });
+
+            // Add 'active' class to the clicked navigation link
+            if (clickedLink) {
+                clickedLink.classList.add('active');
+            }
+
+            // Special handling for 'strategic-insights' to keep 'environmental-scanning' active in main nav
+            if (sectionId === 'strategic-insights') {
+                document.querySelector('.nav-link[onclick*="environmental-scanning"]').classList.add('active');
+                if (clickedLink) {
+                    clickedLink.classList.add('active'); // Keep the sub-nav link active too
+                }
+            }
+        }
+
+        // Initialize: Show the home section when the page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            showSection('home', document.querySelector('.nav-link[onclick*="home"]'));
+        });
+    </script>
+</body>
+</html>
